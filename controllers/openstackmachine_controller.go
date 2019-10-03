@@ -36,7 +36,7 @@ import (
 	"sigs.k8s.io/cluster-api-provider-openstack/pkg/cloud/services/loadbalancer"
 	"sigs.k8s.io/cluster-api-provider-openstack/pkg/cloud/services/networking"
 	"sigs.k8s.io/cluster-api-provider-openstack/pkg/cloud/services/provider"
-	clusterv1 "sigs.k8s.io/cluster-api/api/v1alpha2"
+	clusterv1 "sigs.k8s.io/cluster-api/api/v1alpha3"
 	"sigs.k8s.io/cluster-api/util/patch"
 	"sigs.k8s.io/controller-runtime/pkg/handler"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
@@ -47,7 +47,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
-	infrav1 "sigs.k8s.io/cluster-api-provider-openstack/api/v1alpha2"
+	infrav1 "sigs.k8s.io/cluster-api-provider-openstack/api/v1alpha3"
 	capierrors "sigs.k8s.io/cluster-api/errors"
 	"sigs.k8s.io/cluster-api/util"
 )
@@ -453,7 +453,7 @@ func (r *OpenStackMachineReconciler) OpenStackClusterToOpenStackMachines(o handl
 		return result
 	}
 
-	labels := map[string]string{clusterv1.MachineClusterLabelName: cluster.Name}
+	labels := map[string]string{clusterv1.ClusterLabelName: cluster.Name}
 	machineList := &clusterv1.MachineList{}
 	if err := r.List(context.TODO(), machineList, client.InNamespace(c.Namespace), client.MatchingLabels(labels)); err != nil {
 		log.Error(err, "failed to list Machines")

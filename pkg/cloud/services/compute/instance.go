@@ -22,7 +22,7 @@ import (
 	"time"
 
 	"sigs.k8s.io/cluster-api-provider-openstack/pkg/cloud/services/networking"
-	clusterv1 "sigs.k8s.io/cluster-api/api/v1alpha2"
+	clusterv1 "sigs.k8s.io/cluster-api/api/v1alpha3"
 	"sigs.k8s.io/cluster-api/controllers/noderefutil"
 
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/security/groups"
@@ -40,7 +40,7 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/networks"
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/ports"
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/subnets"
-	infrav1 "sigs.k8s.io/cluster-api-provider-openstack/api/v1alpha2"
+	infrav1 "sigs.k8s.io/cluster-api-provider-openstack/api/v1alpha3"
 	"sigs.k8s.io/cluster-api/util"
 )
 

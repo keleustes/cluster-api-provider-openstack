@@ -1,7 +1,7 @@
 #####################################################
 # ${CLUSTER_NAME}-md-0
 #####################################################
-apiVersion: cluster.x-k8s.io/v1alpha2
+apiVersion: cluster.x-k8s.io/v1alpha3
 kind: MachineDeployment
 metadata:
   name: ${CLUSTER_NAME}-md-0
@@ -23,18 +23,18 @@ spec:
     spec:
       bootstrap:
         configRef:
-          apiVersion: bootstrap.cluster.x-k8s.io/v1alpha2
+          apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
           kind: KubeadmConfigTemplate
           name: ${CLUSTER_NAME}-md-0
           namespace: ${CLUSTER_NAME}
       infrastructureRef:
-        apiVersion: infrastructure.cluster.x-k8s.io/v1alpha2
+        apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
         kind: OpenStackMachineTemplate
         name: ${CLUSTER_NAME}-md-0
         namespace: ${CLUSTER_NAME}
       version: ${KUBERNETES_VERSION}
 ---
-apiVersion: infrastructure.cluster.x-k8s.io/v1alpha2
+apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
 kind: OpenStackMachineTemplate
 metadata:
   name: ${CLUSTER_NAME}-md-0
@@ -50,7 +50,7 @@ spec:
       flavor: m1.medium
       image: <Image Name>
 ---
-apiVersion: bootstrap.cluster.x-k8s.io/v1alpha2
+apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
 kind: KubeadmConfigTemplate
 metadata:
   name: ${CLUSTER_NAME}-md-0

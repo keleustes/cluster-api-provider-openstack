@@ -40,6 +40,7 @@ CLUSTERCTL := $(BIN_DIR)/clusterctl
 CONTROLLER_GEN := $(TOOLS_BIN_DIR)/controller-gen
 GOLANGCI_LINT := $(TOOLS_BIN_DIR)/golangci-lint
 MOCKGEN := $(TOOLS_BIN_DIR)/mockgen
+CONVERSION_GEN := $(TOOLS_BIN_DIR)/conversion-gen
 
 # Define Docker related variables. Releases should modify and double check these vars.
 REGISTRY ?= gcr.io/$(shell gcloud config get-value project)
@@ -138,6 +139,9 @@ $(CONTROLLER_GEN): $(TOOLS_DIR)/go.mod # Build controller-gen from tools folder.
 $(GOLANGCI_LINT): $(TOOLS_DIR)/go.mod # Build golangci-lint from tools folder.
 	cd $(TOOLS_DIR); go build -tags=tools -o $(BIN_DIR)/golangci-lint github.com/golangci/golangci-lint/cmd/golangci-lint
 
+$(CONVERSION_GEN): $(TOOLS_DIR)/go.mod
+	cd $(TOOLS_DIR); go build -tags=tools -o $(BIN_DIR)/conversion-gen k8s.io/code-generator/cmd/conversion-gen
+
 $(MOCKGEN): $(TOOLS_DIR)/go.mod # Build mockgen from tools folder.
 	cd $(TOOLS_DIR); go build -tags=tools -o $(BIN_DIR)/mockgen github.com/golang/mock/mockgen
 
@@ -167,11 +171,15 @@ generate: ## Generate code
 	$(MAKE) generate-manifests
 
 .PHONY: generate-go
-generate-go: $(CONTROLLER_GEN) $(MOCKGEN) ## Runs Go related generate targets
+generate-go: $(CONTROLLER_GEN) $(CONVERSION_GEN) $(MOCKGEN) ## Runs Go related generate targets
 	go generate ./...
 	$(CONTROLLER_GEN) \
 		paths=./api/... \
 		object:headerFile=./hack/boilerplate.go.txt
+	$(CONVERSION_GEN) \
+		--input-dirs=./api/v1alpha2 \
+		--output-file-base=zz_generated.conversion \
+		--go-header-file=./hack/boilerplate.go.txt
 
 .PHONY: generate-manifests
 generate-manifests: $(CONTROLLER_GEN) ## Generate manifests e.g. CRD, RBAC etc.

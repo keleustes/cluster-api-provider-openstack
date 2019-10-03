@@ -1,7 +1,7 @@
 #####################################################
 # ${CLUSTER_NAME}-controlplane-0
 #####################################################
-apiVersion: cluster.x-k8s.io/v1alpha2
+apiVersion: cluster.x-k8s.io/v1alpha3
 kind: Machine
 metadata:
   name: ${CLUSTER_NAME}-controlplane-0
@@ -13,17 +13,17 @@ spec:
   version: ${KUBERNETES_VERSION}
   bootstrap:
     configRef:
-      apiVersion: bootstrap.cluster.x-k8s.io/v1alpha2
+      apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
       kind: KubeadmConfig
       name: ${CLUSTER_NAME}-controlplane-0
       namespace: ${CLUSTER_NAME}
   infrastructureRef:
-    apiVersion: infrastructure.cluster.x-k8s.io/v1alpha2
+    apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
     kind: OpenStackMachine
     name: ${CLUSTER_NAME}-controlplane-0
     namespace: ${CLUSTER_NAME}
 ---
-apiVersion: infrastructure.cluster.x-k8s.io/v1alpha2
+apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
 kind: OpenStackMachine
 metadata:
   name: ${CLUSTER_NAME}-controlplane-0
@@ -37,7 +37,7 @@ spec:
     name: cloud-config
     namespace: ${CLUSTER_NAME}
 ---
-apiVersion: bootstrap.cluster.x-k8s.io/v1alpha2
+apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
 kind: KubeadmConfig
 metadata:
   name: ${CLUSTER_NAME}-controlplane-0
@@ -102,7 +102,7 @@ spec:
 #####################################################
 # ${CLUSTER_NAME}-controlplane-1
 #####################################################
-apiVersion: cluster.x-k8s.io/v1alpha2
+apiVersion: cluster.x-k8s.io/v1alpha3
 kind: Machine
 metadata:
   name: ${CLUSTER_NAME}-controlplane-1
@@ -113,17 +113,17 @@ spec:
   version: ${KUBERNETES_VERSION}
   bootstrap:
     configRef:
-      apiVersion: bootstrap.cluster.x-k8s.io/v1alpha2
+      apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
       kind: KubeadmConfig
       name: ${CLUSTER_NAME}-controlplane-1
       namespace: ${CLUSTER_NAME}
   infrastructureRef:
-    apiVersion: infrastructure.cluster.x-k8s.io/v1alpha2
+    apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
     kind: OpenStackMachine
     name: ${CLUSTER_NAME}-controlplane-1
     namespace: ${CLUSTER_NAME}
 ---
-apiVersion: infrastructure.cluster.x-k8s.io/v1alpha2
+apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
 kind: OpenStackMachine
 metadata:
   name: ${CLUSTER_NAME}-controlplane-1
@@ -137,7 +137,7 @@ spec:
     name: cloud-config
     namespace: ${CLUSTER_NAME}
 ---
-apiVersion: bootstrap.cluster.x-k8s.io/v1alpha2
+apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
 kind: KubeadmConfig
 metadata:
   name: ${CLUSTER_NAME}-controlplane-1
@@ -176,7 +176,7 @@ spec:
 #####################################################
 # ${CLUSTER_NAME}-controlplane-2
 #####################################################
-apiVersion: cluster.x-k8s.io/v1alpha2
+apiVersion: cluster.x-k8s.io/v1alpha3
 kind: Machine
 metadata:
   name: ${CLUSTER_NAME}-controlplane-2
@@ -188,17 +188,17 @@ spec:
   version: ${KUBERNETES_VERSION}
   bootstrap:
     configRef:
-      apiVersion: bootstrap.cluster.x-k8s.io/v1alpha2
+      apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
       kind: KubeadmConfig
       name: ${CLUSTER_NAME}-controlplane-2
       namespace: ${CLUSTER_NAME}
   infrastructureRef:
-    apiVersion: infrastructure.cluster.x-k8s.io/v1alpha2
+    apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
     kind: OpenStackMachine
     name: ${CLUSTER_NAME}-controlplane-2
     namespace: ${CLUSTER_NAME}
 ---
-apiVersion: infrastructure.cluster.x-k8s.io/v1alpha2
+apiVersion: infrastructure.cluster.x-k8s.io/v1alpha3
 kind: OpenStackMachine
 metadata:
   name: ${CLUSTER_NAME}-controlplane-2
@@ -212,7 +212,7 @@ spec:
     name: cloud-config
     namespace: ${CLUSTER_NAME}
 ---
-apiVersion: bootstrap.cluster.x-k8s.io/v1alpha2
+apiVersion: bootstrap.cluster.x-k8s.io/v1alpha3
 kind: KubeadmConfig
 metadata:
   name: ${CLUSTER_NAME}-controlplane-2
